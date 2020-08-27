@@ -29,7 +29,7 @@ RUN \
     && mkdir -p qBittorrent/build \
     && cd qBittorrent \
 # Remove alpha status from build (some trackers disallow it)
-    && sed -i "s|VER_STATUS.*=.*|VER_STATUS =|i" version.pri \
+    && sed -i "s|VER_STATUS.*=.*|VER_STATUS = # nightly|i" version.pri \
 # Build qBittorrent
     && cd build \
     && cmake -G Ninja -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release -DSYSTEM_QTSINGLEAPPLICATION=ON -DGUI=OFF -DSTACKTRACE=OFF .. \
