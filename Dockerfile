@@ -27,10 +27,11 @@ RUN \
     && rm -rf /tmp/* \
     && git clone --depth=1 https://github.com/qBittorrent/qBittorrent \
     && mkdir -p qBittorrent/build \
-    && cd qBittorrent/build \
+    && cd qBittorrent \
 # Remove alpha status from build (some trackers disallow it)
     && sed -i "s|VER_STATUS.*=.*|VER_STATUS =|i" version.pri \
 # Build qBittorrent
+    && cd build \
     && cmake -G Ninja -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release -DSYSTEM_QTSINGLEAPPLICATION=ON -DGUI=OFF -DSTACKTRACE=OFF .. \
     && ninja -j$(nproc) \
     && ninja install \
